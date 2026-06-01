@@ -133,14 +133,36 @@ for v in lst:
 for index, v in enumerate(lst):
     print(f"lst[{index}]: {v}")
 
-# 공백 시간
-# 공백 시간
 
-nums = [100, 30, 50, 20, 70]
+# list api
+
+# list.count(값): list 내에 같은 값이 몇개 있는가?
+print("--- list.count(값) ---")
 fruits = ["apple", "banana", "cherry", "apple", "melon"]
 
-# 공백시간
-# 공백시간
+print('fruits.count("apple"): ', fruits.count("apple"))
+print('fruits.count("banana"): ', fruits.count("banana"))
+print('fruits.count("kiwi"): ', fruits.count("kiwi"))
+
+
+# sort : 정렬하다
+# list.sort() : 원본 리스트 내에서 정렬(in-place)
+# -> 원본 데이터가 변경(원본 데이터 손실)
+
+# sorted(list): 정렬된 새 리스트를 반환(not-in-place)
+# -> 원본 데이터가 별도로 유지
+
+print("--- list.sort() : 원본 변경 ---")
+nums = [100, 30, 50, 20, 70]
+print("nums: ", nums)
+
+nums.sort() # 정렬 수행
+print("오름차순 정렬된 nums: ", nums)
+
+nums.sort(reverse=True) # 정렬 뒤집기 == 내림차순
+print("내림차순 정렬된 nums: ", nums)
+
+
 # key 속성 -> 정렬 기준 함수
 print("--- key 속성 -> 정렬 기준 함수 ---")
 fruits.append("kiwi")
@@ -157,7 +179,8 @@ def my_sort(elem):
 fruits.sort(key=my_sort)
 print(fruits)
 
-# solted(list) : 원본 유지 정렬 (새 list 반환)
+
+# sorted(list) : 원본 유지 정렬 (새 list 반환)
 print("--- sorted(list) ---")
 nums = [9, 2, 4, 7, 1]
 nums2 = sorted(nums)
@@ -172,14 +195,13 @@ numbers = [10, 20, 30]
 # b = numbers[1]
 # c = numbers[2]
 a, b, c = numbers
-print(a, b, c)
+print(a,b,c)
 
 # d = 0번 인덱스 요소(10)
-# *e = 1, 2 인덱스 요소 [20, 30] -> 나머지를 list 형태로 반환
+# *e = 1,2 인덱스 요소 [20, 30]  -> 나머지를 list 형태로 반환
 d, *e = numbers
 print(d, e)
 
-number = [10, 20, 30, 40, 50]
-a, *b, c = number
-print(a, b, c)
-
+numbers = [10, 20, 30, 40, 50]
+a, *b, c = numbers
+print(a,b,c)
