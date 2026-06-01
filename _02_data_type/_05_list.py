@@ -132,3 +132,54 @@ for v in lst:
 # list 인덱스, 요소 순회
 for index, v in enumerate(lst):
     print(f"lst[{index}]: {v}")
+
+# 공백 시간
+# 공백 시간
+
+nums = [100, 30, 50, 20, 70]
+fruits = ["apple", "banana", "cherry", "apple", "melon"]
+
+# 공백시간
+# 공백시간
+# key 속성 -> 정렬 기준 함수
+print("--- key 속성 -> 정렬 기준 함수 ---")
+fruits.append("kiwi")
+print("fruits: ", fruits)
+
+# len 함수를 정렬 기준으로 설정
+fruits.sort(key=len)
+print("정렬 후 fruits: ", fruits)
+
+# 커스텀 정렬기준함수
+def my_sort(elem):
+    return len(elem), elem # tuple로 우선순위 지정
+
+fruits.sort(key=my_sort)
+print(fruits)
+
+# solted(list) : 원본 유지 정렬 (새 list 반환)
+print("--- sorted(list) ---")
+nums = [9, 2, 4, 7, 1]
+nums2 = sorted(nums)
+print("원본 nums: ", nums)
+print("정렬된 nums2: ", nums2)
+
+# list unpacking(묶음 풀기)
+# - list == 변수의 묶음
+print("--- list unpacking ---")
+numbers = [10, 20, 30]
+# a = numbers[0]
+# b = numbers[1]
+# c = numbers[2]
+a, b, c = numbers
+print(a, b, c)
+
+# d = 0번 인덱스 요소(10)
+# *e = 1, 2 인덱스 요소 [20, 30] -> 나머지를 list 형태로 반환
+d, *e = numbers
+print(d, e)
+
+number = [10, 20, 30, 40, 50]
+a, *b, c = number
+print(a, b, c)
+
