@@ -37,5 +37,47 @@ pip_commands = [
 REQUIRED_PACKAGES = {
     "requests": "requests",
     "colorama": "colorama",
-    "python-dotenv": "python-dotenv"
+    "python-dotenv": "dotenv"
 }
+
+from importlib import import_module
+from importlib.metadata import version, PackageNotFoundError
+from io import StringIO
+
+def find_missing_packages() -> list[str]:
+    """requirements.txt 작성된 패키지가 설치 되어있는지 확인"""
+    missing_packages = [] #설치 안된 패키지를 저장할 list
+    for package_name in REQUIRED_PACKAGES:
+        try:
+            # 패키지 버전 정보를 문자열로 반환
+            # 단, 해당 패키지가 설치되어있지 않다면 PakageNotFoundError 발생
+            version(package_name)
+        except PackageNotFoundError:
+            missing_packages.append(package_name)
+
+    return missing_packages
+
+def print_installed_versions() -> None:
+    """ 설치된 패키지 버전 출력(pip list) """
+    for package_name in REQUIRED_PACKAGES:
+        print(f"{package_name} : {version(package_name)}")
+
+def print_import_results() -> None:
+    """ 설치된 패키지를 실제 Python 모듈로 import 가능한지 확인 """
+    for package_name, module_name in REQUIRED_PACKAGES.items():
+        import_module(module_name)
+        print(f"{package_name} -> {module_name} import 성공")
+
+# 필수 패키지 중 설치되지 않은 패키지 list를 반환받아 저장
+missing_packages = find_missing_packages()
+
+if missing_packages: # list에 요소가 있다면 True
+    print("설치 되지 않은 패키지: ", missing_packages)
+
+    for package_name in missing_packages:
+        print(f"python -m pip install {package_name}")
+
+else: # list가 비어있다면 false
+    print("필수 패키지가 모두 설치 되어 있습니다.")
+    print_installed_versions()
+    print_import_results()
